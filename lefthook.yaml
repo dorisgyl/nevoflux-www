@@ -1,0 +1,21 @@
+pre-commit:
+  piped: true
+  commands:
+    prettier:
+      priority: 1
+      glob: '*.{ts,tsx,js,jsx,astro,json,md,yaml,yml,css}'
+      run: pnpm exec prettier --check --cache {staged_files}
+    eslint:
+      priority: 2
+      glob: '*.{ts,tsx,js,jsx,astro}'
+      run: pnpm exec eslint --max-warnings=0 --no-warn-ignored --cache {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}
+
+post-merge:
+  commands:
+    pnpm-install:
+      run: pnpm install

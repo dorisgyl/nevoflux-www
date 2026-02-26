@@ -1,0 +1,25 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import NavBar from '~/components/NavBar.astro';
+import Footer from '~/components/Footer.astro';
+import Button from '~/components/Button.astro';
+import { getLocale, getUI, getPath } from '~/utils/i18n';
+
+const locale = getLocale(Astro.url);
+const ui = getUI(locale);
+---
+
+<Layout title={`${ui['404'].title} - ${ui.site.title}`}>
+  <NavBar />
+  <main class="flex min-h-screen items-center justify-center pt-16">
+    <div class="container text-center">
+      <h1 class="text-6xl font-bold">404</h1>
+      <p class="mt-4 text-xl text-subtle">{ui['404'].title}</p>
+      <p class="mt-2 text-muted">{ui['404'].description}</p>
+      <div class="mt-8">
+        <Button href={getPath(locale, '/')}>{ui['404'].backHome}</Button>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

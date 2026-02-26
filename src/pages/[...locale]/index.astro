@@ -1,0 +1,25 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import NavBar from '~/components/NavBar.astro';
+import Hero from '~/components/Hero.astro';
+import Features from '~/components/Features.astro';
+import Modes from '~/components/Modes.astro';
+import CallToAction from '~/components/CallToAction.astro';
+import Footer from '~/components/Footer.astro';
+import { getStaticPaths as getI18nStaticPaths } from '~/utils/i18n';
+
+export function getStaticPaths() {
+  return getI18nStaticPaths();
+}
+---
+
+<Layout>
+  <NavBar />
+  <main>
+    <Hero />
+    <Features />
+    <Modes />
+    <CallToAction />
+  </main>
+  <Footer />
+</Layout>

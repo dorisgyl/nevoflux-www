@@ -1,0 +1,85 @@
+{
+  "site": {
+    "title": "NevoFlux",
+    "description": "NevoFlux - The AI-Native Browser. Don't Just Browse. Command."
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "download": "Download",
+    "github": "GitHub"
+  },
+  "lang": {
+    "label": "EN",
+    "switchTo": "ZH"
+  },
+  "hero": {
+    "tagline": "The AI-Native Browser",
+    "title": "Don't Just Browse. Command.",
+    "subtitle": "An AI-native browser with identity, memory, and autonomous computer control. Your agentic companion that evolves with you.",
+    "download": "Download for {os}",
+    "downloadGeneric": "Download",
+    "github": "View on GitHub",
+    "otherPlatforms": "Other platforms"
+  },
+  "features": {
+    "title": "Built for the Age of AI",
+    "subtitle": "NevoFlux embeds AI intelligence directly into the browser engine — not as an extension, but as a core capability.",
+    "identity": {
+      "title": "Identity & Soul",
+      "description": "A personalized AI companion with evolving behavioral patterns. Customize its personality, values, and communication style."
+    },
+    "memory": {
+      "title": "Memory & Learning",
+      "description": "Cross-session encrypted storage with preference adaptation. Your browser learns from every interaction."
+    },
+    "autonomy": {
+      "title": "Progressive Autonomy",
+      "description": "Three capability tiers — Chat, Browser, and Agent — giving you control over how much autonomy your AI has."
+    },
+    "systemControl": {
+      "title": "Full System Control",
+      "description": "70+ browser automation APIs plus cross-platform screen capture, mouse and keyboard control. From web pages to your entire OS — AI commands it all."
+    },
+    "canvas": {
+      "title": "Canvas Micro Apps",
+      "description": "Generate functional mini-applications on the fly. React, Vue, or Svelte — built and running in seconds."
+    },
+    "llm": {
+      "title": "Multi-LLM Support",
+      "description": "16+ AI providers including Claude, GPT, Qwen, DeepSeek, Gemini, and local models via Ollama."
+    }
+  },
+  "modes": {
+    "title": "Three Modes. One Browser.",
+    "subtitle": "Progressive autonomy — you control the level of AI power.",
+    "chat": {
+      "title": "Chat",
+      "description": "Pure conversational AI. Ask questions, get answers, brainstorm ideas — no tools needed."
+    },
+    "browser": {
+      "title": "Browser",
+      "description": "AI controls the browser. Navigate pages, click elements, fill forms, capture screenshots."
+    },
+    "agent": {
+      "title": "Agent",
+      "description": "Full autonomy. File operations, bash commands, computer control, sub-agents, and canvas generation."
+    }
+  },
+  "cta": {
+    "title": "Ready to Command Your Browser?",
+    "subtitle": "Open source, privacy-first, and built on Firefox.",
+    "button": "Download NevoFlux",
+    "github": "Star on GitHub"
+  },
+  "footer": {
+    "copyright": "© 2026 NevoFlux. All rights reserved.",
+    "license": "MPL-2.0 License",
+    "builtWith": "Built on Zen Browser / Firefox"
+  },
+  "404": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist.",
+    "backHome": "Back to Home"
+  }
+}

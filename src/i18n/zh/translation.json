@@ -1,0 +1,85 @@
+{
+  "site": {
+    "title": "NevoFlux",
+    "description": "NevoFlux - AI 原生浏览器。不只是浏览，而是掌控。"
+  },
+  "nav": {
+    "home": "首页",
+    "features": "特性",
+    "download": "下载",
+    "github": "GitHub"
+  },
+  "lang": {
+    "label": "中文",
+    "switchTo": "EN"
+  },
+  "hero": {
+    "tagline": "AI 原生浏览器",
+    "title": "不只是浏览，而是掌控。",
+    "subtitle": "一款拥有身份、记忆和自主计算机控制能力的 AI 原生浏览器。与你共同进化的智能伙伴。",
+    "download": "下载 {os} 版本",
+    "downloadGeneric": "下载",
+    "github": "查看源码",
+    "otherPlatforms": "其他平台"
+  },
+  "features": {
+    "title": "为 AI 时代而生",
+    "subtitle": "NevoFlux 将 AI 智能直接嵌入浏览器引擎 —— 不是扩展，而是核心能力。",
+    "identity": {
+      "title": "身份与灵魂",
+      "description": "个性化的 AI 伙伴，拥有不断进化的行为模式。自定义其性格、价值观和沟通风格。"
+    },
+    "memory": {
+      "title": "记忆与学习",
+      "description": "跨会话加密存储，自适应用户偏好。你的浏览器从每次交互中学习。"
+    },
+    "autonomy": {
+      "title": "渐进式自主",
+      "description": "三种能力层级 —— 对话、浏览器和智能体 —— 让你掌控 AI 的自主程度。"
+    },
+    "systemControl": {
+      "title": "全系统控制",
+      "description": "70+ 浏览器自动化 API，加上跨平台屏幕捕获、鼠标键盘控制。从网页到整个操作系统 —— AI 全面掌控。"
+    },
+    "canvas": {
+      "title": "画布微应用",
+      "description": "即时生成功能完整的迷你应用。React、Vue 或 Svelte —— 几秒内构建并运行。"
+    },
+    "llm": {
+      "title": "多模型支持",
+      "description": "支持 16+ AI 提供商，包括 Claude、GPT、通义千问、DeepSeek、Gemini 以及通过 Ollama 运行的本地模型。"
+    }
+  },
+  "modes": {
+    "title": "三种模式，一个浏览器。",
+    "subtitle": "渐进式自主 —— 由你掌控 AI 的能力等级。",
+    "chat": {
+      "title": "对话",
+      "description": "纯对话式 AI。提问、获取答案、头脑风暴 —— 无需任何工具。"
+    },
+    "browser": {
+      "title": "浏览器",
+      "description": "AI 控制浏览器。导航页面、点击元素、填写表单、截取屏幕。"
+    },
+    "agent": {
+      "title": "智能体",
+      "description": "完全自主。文件操作、终端命令、计算机控制、子智能体和画布生成。"
+    }
+  },
+  "cta": {
+    "title": "准备好掌控你的浏览器了吗？",
+    "subtitle": "开源、隐私优先，基于 Firefox 构建。",
+    "button": "下载 NevoFlux",
+    "github": "在 GitHub 上 Star"
+  },
+  "footer": {
+    "copyright": "© 2026 NevoFlux. 保留所有权利。",
+    "license": "MPL-2.0 许可证",
+    "builtWith": "基于 Zen Browser / Firefox 构建"
+  },
+  "404": {
+    "title": "页面未找到",
+    "description": "您访问的页面不存在。",
+    "backHome": "返回首页"
+  }
+}

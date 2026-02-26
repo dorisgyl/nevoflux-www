@@ -1,0 +1,21 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "nevoflux",
+    "astro",
+    "tailwindcss",
+    "postcss",
+    "autoprefixer",
+    "fontsource",
+    "bricolage",
+    "grotesque",
+    "commitlint",
+    "lefthook",
+    "vitest",
+    "playwright",
+    "tsconfig",
+    "cspell"
+  ],
+  "ignorePaths": ["node_modules", "dist", ".astro", "pnpm-lock.yaml", "*.min.js", "*.min.css"]
+}
