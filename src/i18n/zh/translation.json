@@ -7,7 +7,9 @@
     "home": "首页",
     "features": "特性",
     "download": "下载",
-    "github": "GitHub"
+    "github": "GitHub",
+    "discord": "Discord",
+    "x": "X"
   },
   "lang": {
     "label": "中文",
@@ -70,7 +72,9 @@
     "title": "准备好掌控你的浏览器了吗？",
     "subtitle": "开源、隐私优先，基于 Firefox 构建。",
     "button": "下载 NevoFlux",
-    "github": "在 GitHub 上 Star"
+    "github": "在 GitHub 上 Star",
+    "discord": "加入 Discord",
+    "x": "关注 X"
   },
   "footer": {
     "copyright": "© 2026 NevoFlux. 保留所有权利。",

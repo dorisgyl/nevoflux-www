@@ -7,7 +7,9 @@
     "home": "Home",
     "features": "Features",
     "download": "Download",
-    "github": "GitHub"
+    "github": "GitHub",
+    "discord": "Discord",
+    "x": "X"
   },
   "lang": {
     "label": "EN",
@@ -70,7 +72,9 @@
     "title": "Ready to Command Your Browser?",
     "subtitle": "Open source, privacy-first, and built on Firefox.",
     "button": "Download NevoFlux",
-    "github": "Star on GitHub"
+    "github": "Star on GitHub",
+    "discord": "Join Discord",
+    "x": "Follow on X"
   },
   "footer": {
     "copyright": "© 2026 NevoFlux. All rights reserved.",

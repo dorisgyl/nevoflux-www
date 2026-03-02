@@ -1,6 +1,6 @@
 ---
 import { getLocale, getUI } from '~/utils/i18n';
-import { GITHUB_URL } from '~/constants';
+import { GITHUB_URL, DISCORD_URL, X_URL } from '~/constants';
 import Logo from './Logo.astro';
 
 const locale = getLocale(Astro.url);
@@ -28,6 +28,22 @@ const ui = getUI(locale);
           rel="noopener noreferrer"
         >
           {ui.footer.license}
+        </a>
+        <a
+          href={X_URL}
+          class="transition-colors hover:text-accent"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          X
+        </a>
+        <a
+          href={DISCORD_URL}
+          class="transition-colors hover:text-accent"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discord
         </a>
       </div>
     </div>
