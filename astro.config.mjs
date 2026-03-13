@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://nevoflux.com',
+  site: 'https://nevoflux.app',
   integrations: [tailwind(), react(), sitemap()],
   i18n: {
     defaultLocale: 'en',
