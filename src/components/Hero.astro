@@ -83,29 +83,58 @@ const DOWNLOAD_BASE = `${GITHUB_URL}/releases/latest`;
   </div>
 </section>
 
-<script define:vars={{ downloadTemplate: ui.hero.download }}>
-  // OS detection and download link update
+<script define:vars={{ downloadTemplate: ui.hero.download, githubUrl: GITHUB_URL }}>
+  // OS detection and download link update with GitHub API
   (function () {
     const ua = navigator.userAgent.toLowerCase();
     let os = '';
     let osLabel = '';
+    /** @type {string[]} */
+    let extensions = [];
 
     if (ua.includes('win')) {
       os = 'windows';
       osLabel = 'Windows';
+      extensions = ['.exe', '.msi'];
     } else if (ua.includes('mac')) {
       os = 'macos';
       osLabel = 'macOS';
+      extensions = ['.dmg', '.pkg'];
     } else if (ua.includes('linux')) {
       os = 'linux';
       osLabel = 'Linux';
+      extensions = ['.AppImage', '.deb', '.rpm'];
     }
 
-    if (os) {
-      const textEl = document.getElementById('download-text');
-      if (textEl) {
-        textEl.textContent = downloadTemplate.replace('{os}', osLabel);
-      }
+    const textEl = document.getElementById('download-text');
+    const btnEl = document.getElementById('download-btn');
+
+    // Update button text immediately based on OS
+    if (os && textEl) {
+      textEl.textContent = downloadTemplate.replace('{os}', osLabel);
+    }
+
+    // Fetch latest release from GitHub API to get direct download link
+    if (os && btnEl) {
+      const apiUrl = githubUrl
+        .replace('github.com', 'api.github.com/repos')
+        .concat('/releases/latest');
+
+      fetch(apiUrl)
+        .then((res) => (res.ok ? res.json() : Promise.reject()))
+        .then((release) => {
+          const assets = release.assets || [];
+          for (const ext of extensions) {
+            const match = assets.find((a) => a.name.toLowerCase().endsWith(ext.toLowerCase()));
+            if (match) {
+              btnEl.setAttribute('href', match.browser_download_url);
+              return;
+            }
+          }
+        })
+        .catch(() => {
+          // Keep default link to releases/latest page
+        });
     }
   })();
 </script>

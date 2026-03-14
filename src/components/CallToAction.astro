@@ -20,7 +20,12 @@ const ui = getUI(locale);
     <p class="mx-auto mt-4 max-w-xl text-lg text-subtle">{ui.cta.subtitle}</p>
 
     <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-      <Button href={GITHUB_URL} variant="primary" target="_blank" rel="noopener noreferrer">
+      <Button
+        href={`${GITHUB_URL}/releases/latest`}
+        variant="primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <svg
           class="mr-2 h-5 w-5"
           viewBox="0 0 24 24"
