@@ -84,7 +84,7 @@ const DOWNLOAD_BASE = `${GITHUB_URL}/releases/latest`;
 </section>
 
 <script define:vars={{ downloadTemplate: ui.hero.download, githubUrl: GITHUB_URL }}>
-  // OS detection and download link update with GitHub API
+  // OS + architecture detection and download link update with GitHub API
   (function () {
     const ua = navigator.userAgent.toLowerCase();
     let os = '';
@@ -106,6 +106,17 @@ const DOWNLOAD_BASE = `${GITHUB_URL}/releases/latest`;
       extensions = ['.AppImage', '.deb', '.rpm'];
     }
 
+    // Detect CPU architecture
+    const arch = (function () {
+      const platform = (navigator.platform || '').toLowerCase();
+      if (platform.includes('aarch64') || platform.includes('arm')) return 'arm64';
+      if (ua.includes('aarch64') || ua.includes('arm64')) return 'arm64';
+      return 'x64';
+    })();
+
+    // Identifiers commonly used in release asset filenames
+    const archTags = arch === 'arm64' ? ['aarch64', 'arm64'] : ['x86_64', 'x86-64', 'x64', 'amd64'];
+
     const textEl = document.getElementById('download-text');
     const btnEl = document.getElementById('download-btn');
 
@@ -124,8 +135,16 @@ const DOWNLOAD_BASE = `${GITHUB_URL}/releases/latest`;
         .then((res) => (res.ok ? res.json() : Promise.reject()))
         .then((release) => {
           const assets = release.assets || [];
+
+          // Helper: check if asset name matches any of the given arch tags
+          const matchesArch = (name) => archTags.some((tag) => name.includes(tag));
+
           for (const ext of extensions) {
-            const match = assets.find((a) => a.name.toLowerCase().endsWith(ext.toLowerCase()));
+            const extLower = ext.toLowerCase();
+            const candidates = assets.filter((a) => a.name.toLowerCase().endsWith(extLower));
+            // Prefer the asset whose name contains the detected arch tag
+            const archMatch = candidates.find((a) => matchesArch(a.name.toLowerCase()));
+            const match = archMatch || candidates[0];
             if (match) {
               btnEl.setAttribute('href', match.browser_download_url);
               return;
