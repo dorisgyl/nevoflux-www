@@ -116,6 +116,9 @@ const DOWNLOAD_BASE = `${GITHUB_URL}/releases/latest`;
 
     // Identifiers commonly used in release asset filenames
     const archTags = arch === 'arm64' ? ['aarch64', 'arm64'] : ['x86_64', 'x86-64', 'x64', 'amd64'];
+    // Tags that identify the OTHER architecture (used to exclude wrong-arch fallbacks)
+    const otherArchTags =
+      arch === 'arm64' ? ['x86_64', 'x86-64', 'x64', 'amd64'] : ['aarch64', 'arm64'];
 
     const textEl = document.getElementById('download-text');
     const btnEl = document.getElementById('download-btn');
@@ -136,15 +139,21 @@ const DOWNLOAD_BASE = `${GITHUB_URL}/releases/latest`;
         .then((release) => {
           const assets = release.assets || [];
 
-          // Helper: check if asset name matches any of the given arch tags
+          // Helpers: check if asset name matches arch tags
           const matchesArch = (name) => archTags.some((tag) => name.includes(tag));
+          const matchesOtherArch = (name) => otherArchTags.some((tag) => name.includes(tag));
 
           for (const ext of extensions) {
             const extLower = ext.toLowerCase();
             const candidates = assets.filter((a) => a.name.toLowerCase().endsWith(extLower));
             // Prefer the asset whose name contains the detected arch tag
             const archMatch = candidates.find((a) => matchesArch(a.name.toLowerCase()));
-            const match = archMatch || candidates[0];
+            // Fallback: pick a generic asset (no arch tag at all), never the wrong arch
+            const genericMatch = candidates.find((a) => {
+              const n = a.name.toLowerCase();
+              return !matchesArch(n) && !matchesOtherArch(n);
+            });
+            const match = archMatch || genericMatch;
             if (match) {
               btnEl.setAttribute('href', match.browser_download_url);
               return;
