@@ -18,7 +18,7 @@
   "hero": {
     "tagline": "The AI-Native Browser",
     "title": "Don't Just Browse. Command.",
-    "subtitle": "An AI-native browser with identity, memory, and autonomous computer control. Your agentic companion that evolves with you.",
+    "subtitle": "An AI-native browser with identity, memory, and autonomous computer control. Your agentic companion that orchestrates AI agents and evolves with you.",
     "download": "Download for {os}",
     "downloadGeneric": "Download",
     "github": "View on GitHub",
@@ -45,11 +45,11 @@
     },
     "canvas": {
       "title": "Canvas Micro Apps",
-      "description": "Generate functional mini-applications on the fly. React, Vue, or Svelte — built and running in seconds."
+      "description": "Generate functional mini-applications on the fly. React, Vue, or Svelte — powered by coding agents, built and running in seconds."
     },
-    "llm": {
-      "title": "Multi-LLM Support",
-      "description": "16+ AI providers including Claude, GPT, Qwen, DeepSeek, Gemini, and local models via Ollama."
+    "agentEcosystem": {
+      "title": "Agent Ecosystem",
+      "description": "16+ LLM providers for the brain. Coding agents and personal agents for the hands. One browser to orchestrate them all."
     }
   },
   "modes": {
@@ -65,8 +65,60 @@
     },
     "agent": {
       "title": "Agent",
-      "description": "Full autonomy. File operations, bash commands, computer control, sub-agents, and canvas generation."
+      "description": "Full autonomy. File operations, bash commands, computer control, coding agents, personal agents, and canvas generation."
     }
+  },
+  "agentArch": {
+    "title": "The NevoFlux Stack",
+    "subtitle": "Three layers. One browser. Infinite possibility.",
+    "llm": {
+      "label": "LLM Providers",
+      "role": "The Brain",
+      "description": "16+ AI providers — Claude, GPT, Qwen, DeepSeek, Gemini, and local models via Ollama. Choose the intelligence that fits your task."
+    },
+    "coding": {
+      "label": "Coding Agents",
+      "role": "The Creator",
+      "description": "Orchestrate Claude Code, Gemini CLI, and more — directly from your browser. Build full-stack apps, debug code, ship features."
+    },
+    "personal": {
+      "label": "Personal Agents",
+      "role": "The Manager",
+      "description": "OpenClaw and custom agents manage your life — email, calendar, tasks, and workflows. Open source meets open source."
+    },
+    "formula": "LLM Providers + Coding Agents + Personal Agents = Command Everything"
+  },
+  "comparison": {
+    "title": "Beyond AI Browsers",
+    "subtitle": "NevoFlux isn't just another AI sidebar. It's a fundamentally different architecture.",
+    "feature": "Feature",
+    "competitors": ["NevoFlux", "Atlas", "Comet", "Dia"],
+    "rows": [
+      { "feature": "Multi-LLM Support", "values": [true, false, "Multi, no local", false] },
+      { "feature": "Local Models (Ollama)", "values": [true, false, false, false] },
+      { "feature": "Coding Agent Orchestration", "values": [true, false, false, false] },
+      { "feature": "Personal Agent (OpenClaw)", "values": [true, false, false, false] },
+      { "feature": "AI Identity & Memory", "values": [true, "Partial", "Partial", false] },
+      { "feature": "Canvas Micro Apps", "values": [true, false, false, false] },
+      {
+        "feature": "Full OS Control",
+        "values": [true, "Browser only", "Remote only", "Browser only"]
+      },
+      { "feature": "Progressive Autonomy (3 modes)", "values": [true, false, false, false] },
+      { "feature": "Open Source", "values": [true, false, false, false] }
+    ]
+  },
+  "openclaw": {
+    "title": "NevoFlux × OpenClaw",
+    "subtitle": "Open Source × Open Source",
+    "description": "NevoFlux drives OpenClaw — the open-source personal agent framework with 50+ service integrations. Manage email, calendar, tasks, smart home, and more — all orchestrated from your browser.",
+    "integrations": "50+ Integrations",
+    "integrationsDesc": "Gmail, Google Calendar, Notion, Todoist, Slack, GitHub, Home Assistant, and more.",
+    "browserUse": "Native Browser Use",
+    "browserUseDesc": "OpenClaw lives inside NevoFlux — no external Playwright or headless browser needed. Native access to 70+ browser APIs, screen capture, and full input control. Faster, more reliable, zero setup.",
+    "openSource": "Fully Open Source",
+    "openSourceDesc": "Both NevoFlux and OpenClaw are open source. Your data, your agents, your rules.",
+    "cta": "Learn more about OpenClaw"
   },
   "cta": {
     "title": "Ready to Command Your Browser?",

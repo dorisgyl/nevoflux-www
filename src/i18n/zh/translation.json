@@ -18,7 +18,7 @@
   "hero": {
     "tagline": "AI 原生浏览器",
     "title": "不只是浏览，而是掌控。",
-    "subtitle": "一款拥有身份、记忆和自主计算机控制能力的 AI 原生浏览器。与你共同进化的智能伙伴。",
+    "subtitle": "一款拥有身份、记忆和自主计算机控制能力的 AI 原生浏览器。编排 AI 智能体，与你共同进化的智能伙伴。",
     "download": "下载 {os} 版本",
     "downloadGeneric": "下载",
     "github": "查看源码",
@@ -45,11 +45,11 @@
     },
     "canvas": {
       "title": "画布微应用",
-      "description": "即时生成功能完整的迷你应用。React、Vue 或 Svelte —— 几秒内构建并运行。"
+      "description": "即时生成功能完整的迷你应用。React、Vue 或 Svelte —— 由编程智能体驱动，几秒内构建并运行。"
     },
-    "llm": {
-      "title": "多模型支持",
-      "description": "支持 16+ AI 提供商，包括 Claude、GPT、通义千问、DeepSeek、Gemini 以及通过 Ollama 运行的本地模型。"
+    "agentEcosystem": {
+      "title": "智能体生态",
+      "description": "16+ 大模型提供商作为大脑，编程智能体和个人智能体作为双手。一个浏览器，编排一切。"
     }
   },
   "modes": {
@@ -65,8 +65,57 @@
     },
     "agent": {
       "title": "智能体",
-      "description": "完全自主。文件操作、终端命令、计算机控制、子智能体和画布生成。"
+      "description": "完全自主。文件操作、终端命令、计算机控制、编程智能体、个人智能体和画布生成。"
     }
+  },
+  "agentArch": {
+    "title": "NevoFlux 技术栈",
+    "subtitle": "三层架构，一个浏览器，无限可能。",
+    "llm": {
+      "label": "大模型提供商",
+      "role": "大脑",
+      "description": "16+ AI 提供商 —— Claude、GPT、通义千问、DeepSeek、Gemini 以及通过 Ollama 运行的本地模型。为每个任务选择最合适的智能。"
+    },
+    "coding": {
+      "label": "编程智能体",
+      "role": "创造者",
+      "description": "在浏览器中编排 Claude Code、Gemini CLI 等 —— 构建全栈应用、调试代码、交付功能。"
+    },
+    "personal": {
+      "label": "个人智能体",
+      "role": "管理者",
+      "description": "OpenClaw 和自定义智能体管理你的生活 —— 邮件、日历、任务和工作流。开源遇见开源。"
+    },
+    "formula": "大模型 + 编程智能体 + 个人智能体 = 掌控一切"
+  },
+  "comparison": {
+    "title": "超越 AI 浏览器",
+    "subtitle": "NevoFlux 不只是另一个 AI 侧边栏，而是一种全新的架构。",
+    "feature": "功能",
+    "competitors": ["NevoFlux", "Atlas", "Comet", "Dia"],
+    "rows": [
+      { "feature": "多模型支持", "values": [true, false, "多模型，无本地", false] },
+      { "feature": "本地模型 (Ollama)", "values": [true, false, false, false] },
+      { "feature": "编程智能体编排", "values": [true, false, false, false] },
+      { "feature": "个人智能体 (OpenClaw)", "values": [true, false, false, false] },
+      { "feature": "AI 身份与记忆", "values": [true, "部分支持", "部分支持", false] },
+      { "feature": "画布微应用", "values": [true, false, false, false] },
+      { "feature": "全系统控制", "values": [true, "仅浏览器", "仅远程", "仅浏览器"] },
+      { "feature": "渐进式自主 (3 种模式)", "values": [true, false, false, false] },
+      { "feature": "开源", "values": [true, false, false, false] }
+    ]
+  },
+  "openclaw": {
+    "title": "NevoFlux × OpenClaw",
+    "subtitle": "开源 × 开源",
+    "description": "NevoFlux 驱动 OpenClaw —— 拥有 50+ 服务集成的开源个人智能体框架。从浏览器编排邮件、日历、任务、智能家居等一切。",
+    "integrations": "50+ 集成",
+    "integrationsDesc": "Gmail、Google 日历、Notion、Todoist、Slack、GitHub、Home Assistant 等。",
+    "browserUse": "原生 Browser Use",
+    "browserUseDesc": "OpenClaw 住在 NevoFlux 内部 —— 无需外接 Playwright 或无头浏览器。原生调用 70+ 浏览器 API、屏幕捕获和完整输入控制。更快、更可靠、零配置。",
+    "openSource": "完全开源",
+    "openSourceDesc": "NevoFlux 和 OpenClaw 都是开源的。你的数据、你的智能体、你的规则。",
+    "cta": "了解更多关于 OpenClaw"
   },
   "cta": {
     "title": "准备好掌控你的浏览器了吗？",

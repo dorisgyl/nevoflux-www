@@ -1,0 +1,85 @@
+---
+import { getLocale, getUI } from '~/utils/i18n';
+
+const locale = getLocale(Astro.url);
+const ui = getUI(locale);
+
+const competitors = ui.comparison.competitors as string[];
+const rows = ui.comparison.rows as Array<{
+  feature: string;
+  values: (boolean | string)[];
+}>;
+---
+
+<section class="py-24 lg:py-32">
+  <div class="container">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight md:text-5xl">{ui.comparison.title}</h2>
+      <p class="mt-4 text-lg text-subtle">{ui.comparison.subtitle}</p>
+    </div>
+
+    <div class="border-dark/10 mx-auto mt-16 max-w-4xl overflow-x-auto rounded-2xl border">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="border-dark/10 bg-surface/50 border-b">
+            <th class="px-5 py-4 text-sm font-semibold">{ui.comparison.feature}</th>
+            {
+              competitors.map((name, ci) => (
+                <th
+                  class={`px-4 py-4 text-center text-sm font-semibold ${ci === 0 ? 'text-accent' : 'text-subtle'}`}
+                >
+                  {name}
+                </th>
+              ))
+            }
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map((row, i) => (
+              <tr
+                class={`border-dark/5 border-b ${i % 2 === 0 ? 'bg-surface/20' : ''} hover:bg-surface/40 transition-colors`}
+              >
+                <td class="px-5 py-3.5 text-sm">{row.feature}</td>
+                {row.values.map((val, ci) => (
+                  <td class="px-4 py-3.5 text-center">
+                    {val === true ? (
+                      <span
+                        class={`inline-flex h-6 w-6 items-center justify-center rounded-full ${ci === 0 ? 'bg-accent/10 text-accent' : 'bg-green-500/10 text-green-600'}`}
+                      >
+                        <svg
+                          class="h-4 w-4"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="3"
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                    ) : val === false ? (
+                      <span class="bg-dark/5 inline-flex h-6 w-6 items-center justify-center rounded-full text-subtle">
+                        <svg
+                          class="h-4 w-4"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                      </span>
+                    ) : (
+                      <span class="text-xs text-subtle">{val}</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
