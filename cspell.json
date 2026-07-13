@@ -40,7 +40,11 @@
     "pathnames",
     "hreflang",
     "mozmake",
-    "whatsnew"
+    "whatsnew",
+    "ONNX",
+    "fastembed",
+    "Authenticode",
+    "cmark"
   ],
   "ignorePaths": [
     "node_modules",
