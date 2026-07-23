@@ -1,0 +1,118 @@
+---
+export const prerender = true;
+
+import Layout from '~/layouts/Layout.astro';
+import NavBar from '~/components/NavBar.astro';
+import Footer from '~/components/Footer.astro';
+import { getLocale, getUI, getStaticPaths as getI18nStaticPaths } from '~/utils/i18n';
+
+export function getStaticPaths() {
+  return getI18nStaticPaths();
+}
+
+const locale = getLocale(Astro.url);
+const ui = getUI(locale);
+---
+
+<Layout title={`${ui.device.title} · ${ui.site.title}`} description={ui.device.subtitle}>
+  <NavBar />
+  <main class="container flex min-h-screen items-center justify-center py-32">
+    <div
+      id="device-root"
+      class="border-dark/10 bg-surface/30 w-full max-w-sm rounded-2xl border p-8"
+      data-approved={ui.device.approved}
+      data-denied={ui.device.denied}
+      data-invalid={ui.device.invalid}
+      data-error={ui.device.error}
+      data-redirecting={ui.device.redirecting}
+    >
+      <h1 class="text-2xl font-bold text-dark">{ui.device.title}</h1>
+      <p class="mt-2 text-sm text-subtle">{ui.device.subtitle}</p>
+
+      <div id="device-actions" class="mt-6 hidden space-y-3">
+        <label for="user-code" class="block text-sm font-medium text-dark"
+          >{ui.device.codeLabel}</label
+        >
+        <input
+          id="user-code"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          class="border-dark/15 w-full rounded-lg border px-4 py-2.5 text-center font-mono text-lg uppercase tracking-widest outline-none focus:border-accent"
+        />
+        <p class="text-xs text-muted">{ui.device.instruction}</p>
+        <button
+          id="approve"
+          class="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
+          >{ui.device.approve}</button
+        >
+        <button
+          id="deny"
+          class="border-dark/15 hover:border-dark/30 w-full rounded-lg border px-4 py-2.5 text-sm font-medium text-subtle transition-colors"
+          >{ui.device.deny}</button
+        >
+      </div>
+
+      <p id="device-status" class="mt-6 hidden text-sm"></p>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { authClient } from '~/lib/auth-client';
+
+  const root = document.getElementById('device-root');
+  const actions = document.getElementById('device-actions');
+  const status = document.getElementById('device-status');
+  const codeInput = document.getElementById('user-code') as HTMLInputElement | null;
+  const msg = (k: string) => (root?.dataset[k] ?? '') as string;
+
+  const userCode = (new URLSearchParams(window.location.search).get('user_code') ?? '').trim();
+  if (codeInput && userCode) codeInput.value = userCode;
+
+  function showStatus(text: string, ok: boolean) {
+    if (!status) return;
+    status.textContent = text;
+    status.className = 'mt-6 text-sm ' + (ok ? 'text-accent' : 'text-red-500');
+    status.classList.remove('hidden');
+  }
+
+  async function respond(action: 'approve' | 'deny') {
+    const code = (codeInput?.value ?? '').trim();
+    if (!code) return;
+    try {
+      const res = await fetch(`/api/auth/device/${action}`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userCode: code }),
+      });
+      if (res.ok) {
+        actions?.classList.add('hidden');
+        showStatus(action === 'approve' ? msg('approved') : msg('denied'), true);
+      } else {
+        // 4xx from an invalid/expired code; anything else is a generic error.
+        showStatus(res.status >= 400 && res.status < 500 ? msg('invalid') : msg('error'), false);
+      }
+    } catch {
+      showStatus(msg('error'), false);
+    }
+  }
+
+  async function init() {
+    const { data } = await authClient.getSession();
+    if (!data) {
+      // Not signed in — go to login and return here (with the code preserved).
+      const back = '/device' + (userCode ? '?user_code=' + encodeURIComponent(userCode) : '');
+      showStatus(msg('redirecting'), true);
+      window.location.href = '/login?redirect=' + encodeURIComponent(back);
+      return;
+    }
+    actions?.classList.remove('hidden');
+  }
+
+  document.getElementById('approve')?.addEventListener('click', () => respond('approve'));
+  document.getElementById('deny')?.addEventListener('click', () => respond('deny'));
+  init();
+</script>

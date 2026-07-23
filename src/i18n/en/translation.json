@@ -31,6 +31,19 @@
     "magicLinkSent": "Check your inbox for a sign-in link.",
     "or": "or"
   },
+  "device": {
+    "title": "Approve device sign-in",
+    "subtitle": "A device is asking to sign in to your NevoFlux account.",
+    "codeLabel": "Device code",
+    "instruction": "Confirm this code matches the one shown on the device you're setting up, then approve.",
+    "approve": "Approve sign-in",
+    "deny": "Deny",
+    "approved": "Approved. Return to your device — it's now signed in.",
+    "denied": "Denied. The device was not signed in.",
+    "invalid": "That code is invalid or has expired. Start again from the device.",
+    "error": "Something went wrong. Please try again.",
+    "redirecting": "Redirecting you to sign in…"
+  },
   "hero": {
     "tagline": "The AI-Native Browser",
     "title": "Don't Just Browse. Command.",

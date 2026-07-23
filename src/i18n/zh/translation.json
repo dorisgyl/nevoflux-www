@@ -31,6 +31,19 @@
     "magicLinkSent": "请查收邮箱里的登录链接。",
     "or": "或"
   },
+  "device": {
+    "title": "批准设备登录",
+    "subtitle": "有一台设备请求登录你的 NevoFlux 账号。",
+    "codeLabel": "设备码",
+    "instruction": "确认此码与你正在设置的设备上显示的一致，然后批准。",
+    "approve": "批准登录",
+    "deny": "拒绝",
+    "approved": "已批准。回到你的设备——它现在已登录。",
+    "denied": "已拒绝。该设备未登录。",
+    "invalid": "该码无效或已过期。请从设备重新开始。",
+    "error": "出错了，请重试。",
+    "redirecting": "正在带你去登录…"
+  },
   "hero": {
     "tagline": "AI 原生浏览器",
     "title": "不只是浏览，而是掌控。",

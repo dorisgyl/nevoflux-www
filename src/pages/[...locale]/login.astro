@@ -90,7 +90,12 @@ const ui = getUI(locale);
 <script>
   import { authClient } from '~/lib/auth-client';
 
-  const callbackURL = window.location.origin + '/packs';
+  // Optional ?redirect= lets callers (e.g. the /device approval page) return
+  // here after sign-in. Only same-origin relative paths are honored — a single
+  // leading slash, not '//' (which would be a protocol-relative open redirect).
+  const redirectParam = new URLSearchParams(window.location.search).get('redirect');
+  const safeRedirect = redirectParam && /^\/(?!\/)/.test(redirectParam) ? redirectParam : '/packs';
+  const callbackURL = window.location.origin + safeRedirect;
 
   document.getElementById('google')?.addEventListener('click', () => {
     authClient.signIn.social({ provider: 'google', callbackURL });
