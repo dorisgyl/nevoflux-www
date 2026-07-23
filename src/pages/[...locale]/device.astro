@@ -78,10 +78,31 @@ const ui = getUI(locale);
     status.classList.remove('hidden');
   }
 
+  // Claim the code for the signed-in user. better-auth's approve endpoint
+  // rejects an unclaimed code ("device_code_not_claimed"); visiting the verify
+  // endpoint (GET /device) while authenticated associates userId with the code.
+  async function claim(code: string) {
+    if (!code) return;
+    try {
+      await fetch(`/api/auth/device?user_code=${encodeURIComponent(code)}`, {
+        credentials: 'include',
+      });
+    } catch {
+      /* best-effort; approve/deny below surfaces the real error */
+    }
+  }
+
+  function goLogin() {
+    const back = '/device' + (userCode ? '?user_code=' + encodeURIComponent(userCode) : '');
+    showStatus(msg('redirecting'), true);
+    window.location.href = '/login?redirect=' + encodeURIComponent(back);
+  }
+
   async function respond(action: 'approve' | 'deny') {
     const code = (codeInput?.value ?? '').trim();
     if (!code) return;
     try {
+      await claim(code); // approve requires userId to be set on the code first
       const res = await fetch(`/api/auth/device/${action}`, {
         method: 'POST',
         credentials: 'include',
@@ -91,9 +112,18 @@ const ui = getUI(locale);
       if (res.ok) {
         actions?.classList.add('hidden');
         showStatus(action === 'approve' ? msg('approved') : msg('denied'), true);
+      } else if (res.status === 401) {
+        goLogin(); // session expired mid-flow
       } else {
-        // 4xx from an invalid/expired code; anything else is a generic error.
-        showStatus(res.status >= 400 && res.status < 500 ? msg('invalid') : msg('error'), false);
+        // Surface the server's actual reason (e.g. expired) instead of guessing.
+        let reason = '';
+        try {
+          const body = (await res.json()) as { error_description?: string };
+          reason = body?.error_description ?? '';
+        } catch {
+          /* no JSON body */
+        }
+        showStatus(reason || msg('invalid'), false);
       }
     } catch {
       showStatus(msg('error'), false);
@@ -103,13 +133,11 @@ const ui = getUI(locale);
   async function init() {
     const { data } = await authClient.getSession();
     if (!data) {
-      // Not signed in — go to login and return here (with the code preserved).
-      const back = '/device' + (userCode ? '?user_code=' + encodeURIComponent(userCode) : '');
-      showStatus(msg('redirecting'), true);
-      window.location.href = '/login?redirect=' + encodeURIComponent(back);
+      goLogin(); // not signed in — log in and return here with the code preserved
       return;
     }
     actions?.classList.remove('hidden');
+    await claim((codeInput?.value ?? '').trim()); // proactively claim the prefilled code
   }
 
   document.getElementById('approve')?.addEventListener('click', () => respond('approve'));
