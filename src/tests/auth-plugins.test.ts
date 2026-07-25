@@ -28,9 +28,17 @@ describe('buildAuthOptions — account/device-grant config (remote-gateway §4b)
     expect(opts.trustedOrigins).toContain('https://portal.nevoflux.app');
   });
 
-  it('registers magicLink + deviceAuthorization + jwt (3 plugins; apiKey deferred to headless)', () => {
-    expect(opts.plugins).toHaveLength(3);
+  it('registers magicLink + deviceAuthorization + jwt + bearer (4 plugins; apiKey deferred to headless)', () => {
+    expect(opts.plugins).toHaveLength(4);
     const ids = (opts.plugins ?? []).map((p) => (p as { id?: string }).id);
     expect(ids).toContain('device-authorization');
+  });
+
+  it('registers bearer so the device-grant token can authenticate API calls', () => {
+    // Without this the daemon's `GET /api/auth/token` (Authorization: Bearer
+    // <device-grant access_token>) 401s and /remote-control dies with
+    // JWT_MINT_ERROR — better-auth only reads bearer tokens via this plugin.
+    const ids = (opts.plugins ?? []).map((p) => (p as { id?: string }).id);
+    expect(ids).toContain('bearer');
   });
 });

@@ -1,5 +1,5 @@
 import type { BetterAuthOptions } from 'better-auth';
-import { magicLink, deviceAuthorization, jwt } from 'better-auth/plugins';
+import { magicLink, deviceAuthorization, jwt, bearer } from 'better-auth/plugins';
 import { sendMagicLinkEmail } from '~/lib/email';
 
 /** Shared options. `database` is the D1 binding (prod) or a sqlite Database (CLI). */
@@ -48,6 +48,15 @@ export function buildAuthOptions(env: Env, database: unknown): BetterAuthOptions
           definePayload: ({ user }) => ({ id: user.id, email: user.email }),
         },
       }),
+      // Accept `Authorization: Bearer <session-token>` as session auth. Required
+      // by the A1 device grant: the daemon holds no cookie jar, so it presents
+      // the device-grant access_token as a bearer token to mint the DO-admission
+      // JWT (`GET /api/auth/token`). Without this the endpoint 401s and
+      // /remote-control fails with JWT_MINT_ERROR. Per better-auth's device
+      // authorization docs, the bearer plugin is the prescribed pairing.
+      // Note: bearer auth bypasses cookie CSRF protection by design; the token
+      // never leaves the daemon (it is not exposed to the sidebar or the portal).
+      bearer(),
       // NOTE: the apiKey plugin (headless service tokens, §4b.3) is deferred to
       // the headless phase — it is not exported from 'better-auth/plugins' in
       // 1.6.20 under that name, and A1 core (device grant + jwt) does not need it.
