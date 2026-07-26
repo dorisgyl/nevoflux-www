@@ -1,6 +1,6 @@
 ---
 import { getLocale, getUI, getPath, getAlternateUrl } from '~/utils/i18n';
-import { GITHUB_URL, DISCORD_URL, X_URL, DOCS_URL } from '~/constants';
+import { GITHUB_URL, DISCORD_URL, X_URL, DOCS_URL, PORTAL_URL } from '~/constants';
 import Logo from './Logo.astro';
 
 const locale = getLocale(Astro.url);
@@ -17,6 +17,7 @@ const links = [
   { href: `${getPath(locale, '/')}#features`, label: ui.nav.features },
   { href: getPath(locale, '/release-notes'), label: ui.nav.releaseNotes },
   { href: getPath(locale, '/packs'), label: ui.nav.packs },
+  { href: PORTAL_URL, label: ui.nav.portal },
 ];
 
 const socials = [
