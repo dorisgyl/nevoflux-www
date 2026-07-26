@@ -48,3 +48,4 @@ playwright-report/
 
 #claude
 CLAUDE.md
+.claude/worktrees/
