@@ -12,7 +12,9 @@ const docsUrl = `${DOCS_URL}/${locale}/docs`;
 // bar needs ~800px before the login slot starts squeezing, so md is too early.
 const links = [
   { href: docsUrl, label: ui.nav.documentation },
-  { href: getPath(locale, '/#features'), label: ui.nav.features },
+  // The fragment has to be appended after getPath: passing it through would
+  // come back as `/#features/`, with the trailing slash breaking the anchor.
+  { href: `${getPath(locale, '/')}#features`, label: ui.nav.features },
   { href: getPath(locale, '/release-notes'), label: ui.nav.releaseNotes },
   { href: getPath(locale, '/packs'), label: ui.nav.packs },
 ];
