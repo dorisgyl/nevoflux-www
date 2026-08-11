@@ -42,6 +42,9 @@
     "mozmake",
     "whatsnew",
     "ONNX",
+    "Kokoro",
+    "VNNI",
+    "rmcp",
     "fastembed",
     "Authenticode",
     "cmark"
