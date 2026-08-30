@@ -47,7 +47,15 @@
     "rmcp",
     "fastembed",
     "Authenticode",
-    "cmark"
+    "cmark",
+    "SenseVoice",
+    "Silero",
+    "unsequenced",
+    "redialling",
+    "ciphertext",
+    "Resynced",
+    "upserts",
+    "nonoptional"
   ],
   "ignorePaths": [
     "node_modules",
